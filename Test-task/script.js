@@ -1,5 +1,4 @@
 //Calendar
-// const modal = document.querySelector('.modal');
 const elem = document.querySelector('.calendar');
 
 function createCalendar(elem, year, month) {
@@ -14,15 +13,15 @@ function createCalendar(elem, year, month) {
 
   const price = () => {
     if (getDay(d) == 5 || getDay(d) == 6) {
-      table = +"30";
+      table = "30";
     } else {
-      table = +"10";
+      table = "10";
     }
     return table;
   };
 
   while (d.getMonth() == mon) {
-    table += `<td>${d.getDate()}<br/><button class="btn btn-calendar">${price()}р.</button></td>`;
+    table += `<td class="day__mon">${d.getDate()}<br/><button class="btn btn-calendar">${price()}р.</button></td>`;
     if (getDay(d) % 7 == 6) { 
       table += '</tr><tr>';
     }
@@ -49,24 +48,72 @@ function getDay(date) {
 
 createCalendar(elem, 2021, 9);
 
-//Modal
+// // Modal
 
 const btnCalendar = document.querySelectorAll('.btn-calendar');
+
+// btnCalendar.forEach((item) => {
+//   item.addEventListener('click', (e) => {
+//     let mod = document.querySelector('.modal');
+//     if (mod) {
+//         e.preventDefault();
+//         mod.remove();
+//     } else {
+//         e.preventDefault();
+//         const modal = document.createElement('div');
+//         modal.innerHTML = '<button>10:00</button><button>12:00</button><button>14:00</button>';
+//         modal.classList.add("modal");
+//         item.append(modal);
+
+//     }
+//   });
+// });
+
+//Price
+
+const result = document.querySelector('.total__price');
+const totalDay = document.querySelector('.total__day');
+const dayMon = document.querySelectorAll('.day__mon');
+let countPrice = 0;
 
 
 
 btnCalendar.forEach((item) => {
   item.addEventListener('click', (e) => {
     e.preventDefault();
-    const modal = document.createElement('div');
-    modal.innerHTML = '<button>10:00</button><button>12:00</button><button>14:00</button>';
-    modal.classList.add("modal");
-    modal.classList.add("hidden");
-    item.append(modal);
-    modal.classList.toggle('hidden'); 
 
+    // let date = e.target.parentNode.textContent;
+    // const dateNext = document.createElement('span');
+    // dateNext.innerHTML = `${date.slice(0,2)}, `;
+
+    item.classList.toggle('green');
+
+    if(e.target.className === 'btn btn-calendar green') {
+      // totalDay.append(dateNext);
+
+      if (e.target.textContent === "10р.") {
+        countPrice += 10;
+      } else {
+        countPrice += 30;
+      }
+    }else{
+      // totalDay.remove(dateNext);
+      if (e.target.textContent === "10р.") {
+        countPrice -= 10;
+      } else {
+        countPrice -= 30;
+      }
+    }
+
+    // totalDay.textContent = dateNext;
+    result.textContent = countPrice;
   });
 });
+
+
+
+
+
 
 
 

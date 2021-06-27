@@ -22,6 +22,7 @@ th {
 }
 
 .btn-calendar {
+  /* position: relative; */
   width: 70px;
   height: 30px;
   margin-top: 15px;
@@ -30,7 +31,9 @@ th {
 /* modal */
 
 .modal {
-  width: 100px;
+  position: absolute;
+  left: -40%;
+  width: 120px;
   height: 100px;
 }
 
@@ -52,18 +55,45 @@ th {
 
 /* form */
 
-.form {
-  height: 50px;
-  margin-top: 30px;
+.book {
   display: flex;
-  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+  text-align: center;
 }
 
 .total__price {
-  padding-right: 20px;
+padding: 0 5px;
+}
+
+.total__day {
+  padding: 0 5px;
+}
+
+.btn-book {
+  width: 200px;
+  height: 50px;
+  font-size: 22px;
+  margin: auto;
+}
+
+.modal__form { 
+  justify-content: center;
+  text-align: center;
+}
+
+.form {
+  height: 50px;
+  margin-top: 30px;
 }
 
 .input__form {
   padding-right: 100px;
   margin-right: 20px;
+}
+
+
+
+.green {
+  background: #00ff15;
 }

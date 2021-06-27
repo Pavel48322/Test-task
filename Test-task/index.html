@@ -10,10 +10,22 @@
 <body>
     <div class="calendar"></div>
 
-    <div class="form">
-        <p class="total__price">0 руб</p>
-        <input type="email" placeholder="Введите ваш mail..." class="input__form">
-        <button class="btn btn-form">Забронировать</button>
+    <div class="book">
+        <p>Вся сумма:<span class="total__price">0</span>руб</p>
+        <p>Выбранные дни:<span class="total__day"></span></p>
+
+        <button class="btn btn-book">Забронировать</button>
+    </div>
+
+    <div class="modal__form">
+        <form name="form" action="" method="POST" class="form">
+            <input type="radio" checked> 10:00
+            <input type="radio"> 12:00
+            <input type="radio"> 14:00<br/> <br/>
+            <input type="email" placeholder="Введите ваш mail..." class="input__form"><br/><br/>
+            <input type="submit" class="btn btn-form" value="Забронировать"><br/><br/>
+    
+        </form>
     </div>
     
     <script src="script.js"></script>
