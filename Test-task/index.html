@@ -12,22 +12,30 @@
 
     <div class="book">
         <p>Вся сумма:<span class="total__price">0</span>руб</p>
-        <p>Выбранные дни:<span class="total__day"></span></p>
+        <p class="all__day">Выбранные дни:</p>
 
         <button class="btn btn-book">Забронировать</button>
     </div>
 
     <div class="modal__form">
-        <form name="form" action="" method="POST" class="form">
-            <input type="radio" checked> 10:00
-            <input type="radio"> 12:00
-            <input type="radio"> 14:00<br/> <br/>
-            <input type="email" placeholder="Введите ваш mail..." class="input__form"><br/><br/>
-            <input type="submit" class="btn btn-form" value="Забронировать"><br/><br/>
-    
-        </form>
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <form name="form" action="" method="POST" >
+                    <div data-close class="modal__close">&times;</div>
+                    <input required placeholder="Ваше имя" name="name" type="text" class="modal__input__name">
+                    <input required placeholder="email" name="email" type="email" class="modal__input__email">
+                    <input type="radio" id="10:00" name="time" value="10:00" checked> 
+                    <label for="10:00">10:00</label>
+                    <input type="radio" id="12:00" name="time" value="12:00">  
+                    <label for="12:00" >12:00</label>
+                    <input type="radio" id="14:00" name="time" value="14:00"> 
+                    <label for="14:00" >14:00</label><br/> <br/>
+                    <input type='submit' class="btn btn-form" value='Забронировать' target="_blank"></input>
+                </form>
+            </div>
+        </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>

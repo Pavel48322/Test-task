@@ -71,9 +71,11 @@ const btnCalendar = document.querySelectorAll('.btn-calendar');
 
 //Price
 
-const result = document.querySelector('.total__price');
-const totalDay = document.querySelector('.total__day');
-const dayMon = document.querySelectorAll('.day__mon');
+const result = document.querySelector('.total__price'),
+      dayMon = document.querySelectorAll('.day__mon'),
+      allDay = document.querySelector('.all__day'),
+      totalDay = document.createElement('span');
+
 let countPrice = 0;
 
 
@@ -81,33 +83,88 @@ let countPrice = 0;
 btnCalendar.forEach((item) => {
   item.addEventListener('click', (e) => {
     e.preventDefault();
+    allDay.append(totalDay);
+    const dateNext = document.createElement('span');
+    let date = e.target.parentNode.textContent;
 
-    // let date = e.target.parentNode.textContent;
-    // const dateNext = document.createElement('span');
-    // dateNext.innerHTML = `${date.slice(0,2)}, `;
+      if (date.length === 5) {
+        dateNext.innerHTML = `${date.slice(0,1)}, `;
+      } else {
+        dateNext.innerHTML = `${date.slice(0,2)}, `;
+      }
 
     item.classList.toggle('green');
 
     if(e.target.className === 'btn btn-calendar green') {
-      // totalDay.append(dateNext);
-
+      const dateNext = document.createElement('span');
+      totalDay.append(dateNext);
       if (e.target.textContent === "10р.") {
         countPrice += 10;
       } else {
         countPrice += 30;
       }
     }else{
-      // totalDay.remove(dateNext);
+      totalDay.remove(dateNext);
+
       if (e.target.textContent === "10р.") {
         countPrice -= 10;
       } else {
         countPrice -= 30;
       }
     }
-
-    // totalDay.textContent = dateNext;
+    
+    totalDay.textContent = dateNext.textContent;
     result.textContent = countPrice;
   });
+});
+
+// Modal Form
+const btnBook = document.querySelector('.btn-book'),
+      modalForm = document.querySelector('.modal__form');
+
+
+function openModal() {
+    modalForm.classList.add('show');
+    modalForm.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    modalForm.classList.add('hidden');
+    modalForm.classList.remove('show');
+    document.body.style.overflow = ''; 
+}
+
+btnBook.addEventListener('click', (e) => {
+  openModal();
+});
+
+
+
+modalForm.addEventListener('click', (e) => {
+  if (e.target === modalForm || e.target.getAttribute('data-close') == "") {
+      closeModal();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Escape' && modalForm.classList.contains('show')) {
+      closeModal();
+  }
+});
+
+// Form
+
+const btnForm = document.querySelector('.btn-form'),
+      modalInputEmail = document.querySelector('.modal__input__email'),
+      modalInputName = document.querySelector('.modal__input__name');
+
+
+btnForm.addEventListener('click', (e) => {
+  console.log(modalInputName.value);
+  console.log(modalInputEmail.value);
+
+  
 });
 
 
