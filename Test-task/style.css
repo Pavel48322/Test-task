@@ -22,7 +22,6 @@ th {
 }
 
 .btn-calendar {
-  /* position: relative; */
   width: 70px;
   height: 30px;
   margin-top: 15px;
@@ -44,8 +43,6 @@ th {
   width: 70px;
   height: 30px;
 }
-
-
 
 /* form */
 
@@ -162,7 +159,6 @@ padding: 0 5px;
   outline: 0
 }
 
-
 .btn-form {
   display: block;
   width: 280px;
@@ -171,21 +167,15 @@ padding: 0 5px;
   margin: 0 auto
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .show {
   display: block;
 }
 
 .hidden {
   display: none;
+}
+
+.block {
+  background: #ff5656;
+  color: #000;
 }

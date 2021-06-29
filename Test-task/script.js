@@ -21,7 +21,7 @@ function createCalendar(elem, year, month) {
   };
 
   while (d.getMonth() == mon) {
-    table += `<td class="day__mon">${d.getDate()}<br/><button class="btn btn-calendar">${price()}р.</button></td>`;
+    table += `<td class="day__mon">${d.getDate()}<br/><button class="btn btn-calendar" >${price()}р.</button></td>`;
     if (getDay(d) % 7 == 6) { 
       table += '</tr><tr>';
     }
@@ -48,37 +48,18 @@ function getDay(date) {
 
 createCalendar(elem, 2021, 9);
 
-// // Modal
-
-const btnCalendar = document.querySelectorAll('.btn-calendar');
-
-// btnCalendar.forEach((item) => {
-//   item.addEventListener('click', (e) => {
-//     let mod = document.querySelector('.modal');
-//     if (mod) {
-//         e.preventDefault();
-//         mod.remove();
-//     } else {
-//         e.preventDefault();
-//         const modal = document.createElement('div');
-//         modal.innerHTML = '<button>10:00</button><button>12:00</button><button>14:00</button>';
-//         modal.classList.add("modal");
-//         item.append(modal);
-
-//     }
-//   });
-// });
-
 //Price
 
-const result = document.querySelector('.total__price'),
+const btnCalendar = document.querySelectorAll('.btn-calendar'),
+      result = document.querySelector('.total__price'),
       dayMon = document.querySelectorAll('.day__mon'),
       allDay = document.querySelector('.all__day'),
-      totalDay = document.createElement('span');
+      totalDay = document.createElement('span'),
+      btnForm = document.querySelector('.btn-form'),
+      modalInputEmail = document.querySelector('.modal__input__email'),
+      modalInputName = document.querySelector('.modal__input__name');
 
 let countPrice = 0;
-
-
 
 btnCalendar.forEach((item) => {
   item.addEventListener('click', (e) => {
@@ -113,8 +94,23 @@ btnCalendar.forEach((item) => {
       }
     }
     
-    totalDay.textContent = dateNext.textContent;
+    // Date booking
+    btnForm.addEventListener('click', (event) => {
+      console.log(modalInputName.value);
+      console.log(modalInputEmail.value);
+      if(e.target.className === 'btn btn-calendar green' && modalInputName.value !== "" && modalInputEmail.value !== "") {
+        event.preventDefault();
+        item.classList.remove('green');
+        item.classList.add('block');
+        item.setAttribute('disabled', false);
+        item.textContent = modalInputName.value;
+        countPrice = 0;
+        closeModal();
+      }
+    });
+
     result.textContent = countPrice;
+    totalDay.textContent = dateNext.textContent;
   });
 });
 
@@ -139,8 +135,6 @@ btnBook.addEventListener('click', (e) => {
   openModal();
 });
 
-
-
 modalForm.addEventListener('click', (e) => {
   if (e.target === modalForm || e.target.getAttribute('data-close') == "") {
       closeModal();
@@ -153,19 +147,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Form
-
-const btnForm = document.querySelector('.btn-form'),
-      modalInputEmail = document.querySelector('.modal__input__email'),
-      modalInputName = document.querySelector('.modal__input__name');
 
 
-btnForm.addEventListener('click', (e) => {
-  console.log(modalInputName.value);
-  console.log(modalInputEmail.value);
-
-  
-});
 
 
 
